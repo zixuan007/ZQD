@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="ZQD">
+    <output-path>$PROJECT_DIR$/Nukkit/plugins</output-path>
+    <root id="archive" name="ZQD.jar">
+      <element id="module-output" name="ZQD" />
+      <element id="file-copy" path="$PROJECT_DIR$/resource/1.png" />
+      <element id="dir-copy" path="$PROJECT_DIR$/resource" />
+    </root>
+  </artifact>
+</component>
