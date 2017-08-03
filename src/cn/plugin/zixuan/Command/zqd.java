@@ -30,7 +30,10 @@ public class zqd extends Command {
                 new CommandParameter("create",true,new String[]{"create"})
         });
         getCommandParameters().put("2",new CommandParameter[]{
-                new CommandParameter("del",false,new String[]{"del"})
+                new CommandParameter("del",true,new String[]{"del"})
+        });
+        getCommandParameters().put("3",new CommandParameter[]{
+                new CommandParameter("help", true, new String[]{"help"})
         });
         setAliases(new String[]{
                 "zqd create  §a>>§b创建签到NPC",
@@ -84,7 +87,11 @@ public class zqd extends Command {
                     }
                     plugin.getNpc().removeNPC();
                     plugin.setNpc(null);
-                    sender.sendMessage("§d[§2签§b到§5系§6统§d]§e");
+                    sender.sendMessage("§d[§2签§b到§5系§6统§d]§e移除成功");
+                    return true;
+                case "help":
+                    sender.sendMessage("§b/zqd create §a>>§b创建签到NPC");
+                    sender.sendMessage("§b/zqd del §a>>§b移除签到NPC");
                     return true;
             }
         }
