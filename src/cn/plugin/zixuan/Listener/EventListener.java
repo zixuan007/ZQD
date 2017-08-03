@@ -13,6 +13,7 @@ import cn.nukkit.event.player.PlayerMoveEvent;
 import cn.nukkit.item.Item;
 import cn.nukkit.level.Position;
 import cn.nukkit.level.sound.ExperienceOrbSound;
+import cn.nukkit.level.sound.ExplodeSound;
 import cn.nukkit.math.Vector3;
 import cn.plugin.zixuan.NPC.NPC;
 import cn.plugin.zixuan.ZQD;
@@ -28,7 +29,6 @@ public class EventListener implements Listener {
         Player player=event.getPlayer();
         if(plugin.getNpc() != null){
             plugin.getNpc().spawnToAll();
-            player.sendMessage(plugin.getNpc().toString());
         }
     }
 
@@ -48,7 +48,6 @@ public class EventListener implements Listener {
                         plugin.createDateFile();
                     if(!plugin.isQD(player.getName())){
                         plugin.QD(player.getName());
-                        player.getLevel().addSound(new ExperienceOrbSound(new Vector3(player.getFloorX(),player.getFloorY(),player.getFloorZ())));
                         List itemList=(List) plugin.getAwardConfig().get("award-item");
                         Item[] items=new Item[itemList.size()];
                         for(int i=0;i<itemList.size();i++){
@@ -63,6 +62,7 @@ public class EventListener implements Listener {
                         player.sendMessage("§d[§2签§b到§5系§6统§d]§e签到成功,获得"+money+"Coin");
                     }else{
                         player.sendMessage("§d[§2签§b到§5系§6统§d]§c你已经签过到了,请勿再次签到");
+                        player.getLevel().addSound(new ExplodeSound(new Vector3(player.getFloorX(),player.getFloorY(),player.getFloorZ())));
                     }
                 }
             }
