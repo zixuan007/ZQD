@@ -1,7 +1,9 @@
 package cn.plugin.zixuan;
 
 import cn.nukkit.Player;
+import cn.nukkit.Server;
 import cn.nukkit.entity.Entity;
+import cn.nukkit.permission.Permission;
 import cn.nukkit.plugin.PluginBase;
 import cn.nukkit.utils.Config;
 import cn.plugin.zixuan.Command.zqd;
@@ -11,7 +13,7 @@ import cn.plugin.zixuan.NPC.NPC;
 import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
-
+import java.util.HashMap;
 
 
 public class ZQD extends PluginBase {
@@ -47,6 +49,9 @@ public class ZQD extends PluginBase {
         if(config.get("nameTag") != null){
             NPC.init();
         }
+        HashMap<String,String> permissions=new HashMap<String,String>();
+        permissions.put("cn.plugin.zixuan.zqd","op");
+        permissions.forEach((name,permission)-> Server.getInstance().getPluginManager().addPermission(new Permission(name,permission)));
     }
 
     public static ZQD getINSTANCE(){
