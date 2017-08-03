@@ -39,6 +39,7 @@ public class zqd extends Command {
                 "zqd create  §a>>§b创建签到NPC",
                 "zqd del §a>>§b移除签到NPC"
         });
+        setPermission("cn.plugin.zixuan.zqd");
     }
 
     @Override
