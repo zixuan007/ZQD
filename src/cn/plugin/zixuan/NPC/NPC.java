@@ -53,10 +53,23 @@ public class NPC extends EntityHuman {
                         entity.yaw=(double)config.get("yaw");
                         entity.pitch=(double)config.get("pith");
                         ZQD.getINSTANCE().setNpc((NPC)entity);
+                        return;
                     }
                 }
 
             }
+            Position pos=new Position((Integer)posList.get(0),(Integer)posList.get(1),(Integer)posList.get(2),ZQD.getINSTANCE().getServer().getLevelByName((String)posList.get(3)));
+            FullChunk chunk=pos.getLevel().getChunk(pos.getFloorX()>>4,pos.getFloorZ()>>4);
+            CompoundTag nbt=new CompoundTag();
+            nbt.putList(new ListTag<DoubleTag>("Pos").add(new DoubleTag("", pos.getFloorX())).add(new DoubleTag("", pos.getFloorY())).add(new DoubleTag("", pos.getFloorZ())))
+                    .putList(new ListTag<DoubleTag>("Motion").add(new DoubleTag("", 0)).add(new DoubleTag("", 0)).add(new DoubleTag("", 0)))
+                    .putList(new ListTag<FloatTag>("Rotation").add(new FloatTag("", pos instanceof Location ? (float) ((Location) pos).yaw : 0))
+                            .add(new FloatTag("", pos instanceof Location ? (float) ((Location) pos).pitch : 0)));
+            Skin skin=new Skin(ZQD.getINSTANCE().getSkinFile());
+            NPC npc=new NPC(chunk,nbt);
+            npc.setNameTag("§a>>§c签§e到§a使§b者§a<<");
+            npc.setNameTagAlwaysVisible();
+            ZQD.getINSTANCE().setNpc(npc);
         }
     }
 
